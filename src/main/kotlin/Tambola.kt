@@ -7,7 +7,7 @@ class Tambola(private var ticket: MutableMap<Int, MutableMap<Int, Boolean>>) {
     }
 
     fun markNumber(ticket: MutableMap<Int, MutableMap<Int, Boolean>>, number: Int) {
-        for ((row, map) in ticket) {
+        for ((_, map) in ticket) {
             if (map.containsKey(number)) {
                 map.replace(number, true)
             }
@@ -15,7 +15,7 @@ class Tambola(private var ticket: MutableMap<Int, MutableMap<Int, Boolean>>) {
     }
 
     fun checkMarked(ticket: MutableMap<Int, MutableMap<Int, Boolean>>, number: Int): Boolean {
-        for ((row, map) in ticket) {
+        for ((_, map) in ticket) {
             if (map.containsKey(number)) {
                 return map.getOrDefault(number, false)
             }
@@ -49,10 +49,10 @@ class Tambola(private var ticket: MutableMap<Int, MutableMap<Int, Boolean>>) {
         return true
     }
 
-    fun earlyFive(ticket: MutableMap<Int, MutableMap<Int, Boolean>>, lastAnnouncedNumber: Int): Boolean {
+    fun earlyFiveClaim(ticket: MutableMap<Int, MutableMap<Int, Boolean>>, lastAnnouncedNumber: Int): Boolean {
         var countMarked = 0
         var lastAnnouncedNumberPresent = false
-        for ((row, map) in ticket) {
+        for ((_, map) in ticket) {
             if (map.containsKey(lastAnnouncedNumber)) {
                 lastAnnouncedNumberPresent = true
             }
@@ -68,9 +68,9 @@ class Tambola(private var ticket: MutableMap<Int, MutableMap<Int, Boolean>>) {
         return false
     }
 
-    fun fullHouse(ticket: MutableMap<Int, MutableMap<Int, Boolean>>, lastAnnouncedNumber: Int): Boolean {
+    fun fullHouseClaim(ticket: MutableMap<Int, MutableMap<Int, Boolean>>, lastAnnouncedNumber: Int): Boolean {
         var lastAnnouncedNumberPresent = false
-        for ((row, map) in ticket) {
+        for ((_, map) in ticket) {
             if (map.containsKey(lastAnnouncedNumber)) {
                 lastAnnouncedNumberPresent = true
             }
@@ -84,16 +84,21 @@ class Tambola(private var ticket: MutableMap<Int, MutableMap<Int, Boolean>>) {
         return true
     }
 
-    fun validClaim(claim: String, ticket: MutableMap<Int, MutableMap<Int, Boolean>>, lastAnnouncedNumber: Int): String {
+    fun isValidClaim(claim: String, ticket: MutableMap<Int, MutableMap<Int, Boolean>>, lastAnnouncedNumber: Int): String {
         var valid = false
-        if (claim == "Top Row") {
-            valid = validateTopRowClaim(ticket, lastAnnouncedNumber)
-        } else if (claim == "Bottom Row") {
-            valid = validBottomRowClaim(ticket, lastAnnouncedNumber)
-        } else if (claim == "Early Five") {
-            valid = earlyFive(ticket, lastAnnouncedNumber)
-        } else if (claim == "Full House") {
-            valid = fullHouse(ticket, lastAnnouncedNumber)
+        when (claim) {
+            "Top Row" -> {
+                valid = validateTopRowClaim(ticket, lastAnnouncedNumber)
+            }
+            "Bottom Row" -> {
+                valid = validBottomRowClaim(ticket, lastAnnouncedNumber)
+            }
+            "Early Five" -> {
+                valid = earlyFiveClaim(ticket, lastAnnouncedNumber)
+            }
+            "Full House" -> {
+                valid = fullHouseClaim(ticket, lastAnnouncedNumber)
+            }
         }
         if (valid) {
             return "Accepted"
