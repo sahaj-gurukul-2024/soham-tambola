@@ -203,4 +203,37 @@ class TambolaTest {
 
         assertEquals("Accepted", claim)
     }
+
+    fun `should reject if the full house claim is invalid`() {
+        val tambola = Tambola(
+            (mutableMapOf(
+                1 to mutableMapOf(4 to false, 16 to false, 48 to false, 63 to false, 76 to false),
+                2 to mutableMapOf(7 to false, 23 to false, 38 to false, 52 to false, 80 to false),
+                3 to mutableMapOf(9 to false, 25 to false, 56 to false, 64 to false, 83 to false),
+            ))
+        )
+        val ticket = tambola.getTicket()
+        tambola.markNumber(ticket, 4)
+        tambola.markNumber(ticket, 16)
+        tambola.markNumber(ticket, 48)
+        tambola.markNumber(ticket, 63)
+        tambola.markNumber(ticket, 76)
+        tambola.markNumber(ticket, 7)
+        tambola.markNumber(ticket, 23)
+        tambola.markNumber(ticket, 38)
+        tambola.markNumber(ticket, 52)
+        tambola.markNumber(ticket, 80)
+        tambola.markNumber(ticket, 9)
+        tambola.markNumber(ticket, 25)
+        tambola.markNumber(ticket, 56)
+        tambola.markNumber(ticket, 64)
+        tambola.markNumber(ticket, 83)
+        tambola.markNumber(ticket, 89)
+
+        val lastAnnouncedNumber = 83
+
+        val claim = tambola.validClaim("Full House", ticket, lastAnnouncedNumber)
+
+        assertEquals("Rejected", claim)
+    }
 }
