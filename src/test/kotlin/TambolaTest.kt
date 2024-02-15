@@ -1,19 +1,49 @@
 import org.example.Tambola
 import org.junit.jupiter.api.Test
+import kotlin.test.assertTrue
 
 class TambolaTest {
     @Test
     fun `the number announced should get marked as true in the ticket`() {
-        val tambola = Tambola((mapOf(
-            1 to listOf(Pair(4, false), Pair(16, false), Pair(48, false), Pair(63, false), Pair(76, false)),
-            2 to listOf(Pair(7, false), Pair(23, false), Pair(38, false), Pair(52, false), Pair(80, false)),
-            3 to listOf(Pair(9, false), Pair(25, false), Pair(56, false), Pair(64, false), Pair(83, false)),
-        )))
+        val tambola = Tambola(
+            (mutableMapOf(
+                1 to mutableMapOf(4 to false, 16 to false, 48 to false, 63 to false, 76 to false),
+                2 to mutableMapOf(7 to false, 23 to false, 38 to false, 52 to false, 80 to false),
+                3 to mutableMapOf(9 to false, 25 to false, 56 to false, 64 to false, 83 to false),
+            ))
+        )
         val ticket = tambola.getTicket()
-        val announcedNumber = 4
+        val announcedNumber = 80
         tambola.markNumber(ticket, announcedNumber)
         tambola.checkMarked(ticket, announcedNumber)
+
+        assertTrue(tambola.checkMarked(ticket, announcedNumber))
     }
 
-    assertTrue(tambola.checkMarked(ticket, announcedNumber))
+    @Test
+    fun `check if top row claim is valid`() {
+        val tambola = Tambola(
+            (mutableMapOf(
+                1 to mutableMapOf(4 to false, 16 to false, 48 to false, 63 to false, 76 to false),
+                2 to mutableMapOf(7 to false, 23 to false, 38 to false, 52 to false, 80 to false),
+                3 to mutableMapOf(9 to false, 25 to false, 56 to false, 64 to false, 83 to false),
+            ))
+        )
+        val ticket = tambola.getTicket()
+        tambola.markNumber(ticket, 90)
+        tambola.markNumber(ticket, 4)
+        tambola.markNumber(ticket, 46)
+        tambola.markNumber(ticket, 63)
+        tambola.markNumber(ticket, 89)
+        tambola.markNumber(ticket, 16)
+        tambola.markNumber(ticket, 76)
+        tambola.markNumber(ticket, 48)
+
+        val lastAnnouncedNumber = 48
+
+        val claim = tambola.validClaim("Top Row", ticket, lastAnnouncedNumber)
+
+        assertTrue(claim == "Accepted")
+    }
+
 }

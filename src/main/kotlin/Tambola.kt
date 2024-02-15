@@ -12,12 +12,15 @@ class Tambola(private var ticket: MutableMap<Int, MutableMap<Int, Boolean>>) {
         }
     }
 
-
     fun checkMarked(ticket: MutableMap<Int, MutableMap<Int, Boolean>>, number: Int): Boolean {
         for ((row, map) in ticket) {
             return map.getOrDefault(number, false)
         }
         return false
+    }
+
+    fun validClaim(s: String, ticket: MutableMap<Int, MutableMap<Int, Boolean>>, lastAnnouncedNumber: Int): String {
+        return "Rejected"
     }
 
 }
