@@ -19,7 +19,23 @@ class Tambola(private var ticket: MutableMap<Int, MutableMap<Int, Boolean>>) {
         return false
     }
 
-    fun validClaim(s: String, ticket: MutableMap<Int, MutableMap<Int, Boolean>>, lastAnnouncedNumber: Int): String {
+    fun validateTopRowClaim(ticket: MutableMap<Int, MutableMap<Int, Boolean>>): Boolean {
+        ticket[1]?.forEach {
+            if (!it.value) {
+                return false
+            }
+        }
+        return true
+    }
+
+    fun validClaim(claim: String, ticket: MutableMap<Int, MutableMap<Int, Boolean>>, lastAnnouncedNumber: Int): String {
+        var valid = false
+        if (claim == "Top Row") {
+            valid = validateTopRowClaim(ticket)
+        }
+        if (valid) {
+            return "Accepted"
+        }
         return "Rejected"
     }
 
