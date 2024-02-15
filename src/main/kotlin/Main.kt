@@ -25,7 +25,7 @@ class Tambola(){
         return false
     }
 
-    fun earlyFiveValidation(
+    fun earlyFiveOrFullHouseValidation(
         ticket: ArrayList<ArrayList<String>>, numbersAnnounced: ArrayList<String>,
         number: Int
     ): Boolean {
