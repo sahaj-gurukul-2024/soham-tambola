@@ -9,8 +9,19 @@ class TambolaTest {
             3 to listOf(Pair(9, false), Pair(25, false), Pair(56, false), Pair(64, false), Pair(83, false)),
         )))
         val announcedNumber = 4
-        for (row in ticket) {
-
+        val rowNumber = -1
+        val rowIndex = -1
+        ticket.forEach { row ->
+            row.forEachIndexed { index, element ->
+                if (element.first == announcedNumber) {
+                    rowNumber = row
+                    rowIndex = index
+                    element.second = true
+                    break
+                }
+            }
         }
     }
+
+    assertTrue(ticket[rowNumber].get(rowIndex).second)
 }
