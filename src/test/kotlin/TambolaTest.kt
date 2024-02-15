@@ -11,18 +11,7 @@ class TambolaTest {
         )))
         val ticket = tambola.getTicket()
         val announcedNumber = 4
-        val rowNumber = -1
-        val rowIndex = -1
-        ticket.forEach { row ->
-            row.forEachIndexed { index, element ->
-                if (element.first == announcedNumber) {
-                    rowNumber = row
-                    rowIndex = index
-                    element.second = true
-                    break
-                }
-            }
-        }
+        tambola.markNumber(ticket, announcedNumber)
     }
 
     assertTrue(ticket[rowNumber].get(rowIndex).second)
