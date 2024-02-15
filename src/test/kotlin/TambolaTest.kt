@@ -74,7 +74,7 @@ class TambolaTest {
         ticket.add("7,_,23,38,_,52,_,_,80".split(',') as ArrayList<String>)
         ticket.add("9,_,25,_,_,56,64,_,83".split(',') as ArrayList<String>)
 
-        val numberAnnounced = ArrayList<String>("48 ,17 ,12, 52, 25, 62, 64, 56".split(", "))
+        val numberAnnounced = ArrayList<String>("9, 54, 17, 64, 83, 12, 25, 52".split(", "))
 
         val claim = "Early Five"
         assertTrue(tambola.validate(ticket, numberAnnounced, claim))
@@ -89,7 +89,7 @@ class TambolaTest {
         ticket.add("7,_,23,38,_,52,_,_,80".split(',') as ArrayList<String>)
         ticket.add("9,_,25,_,_,56,64,_,83".split(',') as ArrayList<String>)
 
-        val numberAnnounced = ArrayList<String>("48 ,17 ,12, 52, 25, 62, 64, 56".split(", "))
+        val numberAnnounced = ArrayList<String>("9, 54, 17, 64, 83, 12, 25, 52, 67".split(", "))
 
         val claim = "Early Five"
         assertFalse(tambola.validate(ticket, numberAnnounced, claim))
