@@ -1,52 +1,51 @@
 package org.example
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-
 class Tambola(){
-    private var numbersGained = 0
+    private var crossedNumberCount = 0
 
-    fun rowValidation(ticket:ArrayList<ArrayList<String>>, numbersAnnounced:ArrayList<String>,
-                 row_number:Int): Boolean {
+    fun rowValidation(
+        ticket: ArrayList<ArrayList<String>>,
+        numbersAnnounced: ArrayList<String>,
+        rowNumber: Int
+    ): Boolean {
+        var currentNumberCount = 0
 
-        var numberCount = 0
-        while (numberCount<numbersAnnounced.size){
-            if (numbersAnnounced[numberCount] in ticket[row_number]){
-                numbersGained+=1
+        while (currentNumberCount < numbersAnnounced.size) {
+            if (numbersAnnounced[currentNumberCount] in ticket[rowNumber]) {
+                crossedNumberCount += 1
             }
-            if (numberCount==numbersAnnounced.size-1 && numbersGained==5){
+            if (currentNumberCount == numbersAnnounced.size - 1 && crossedNumberCount == 5) {
                 return true
             }
-            if (numbersGained==5){
+            if (crossedNumberCount == 5) {
                 return false
             }
-            numberCount+=1
-
+            currentNumberCount += 1
         }
         return false
     }
 
-    fun earlyNumberValidation(ticket:ArrayList<ArrayList<String>>, numbersAnnounced:ArrayList<String>,
-                              number:Int):Boolean{
+    fun earlyFiveValidation(
+        ticket: ArrayList<ArrayList<String>>, numbersAnnounced: ArrayList<String>,
+        number: Int
+    ): Boolean {
         var numberCount = 0
-        while (numberCount<numbersAnnounced.size){
+        while (numberCount < numbersAnnounced.size) {
             if (numbersAnnounced[numberCount] in ticket[0] || numbersAnnounced[numberCount] in ticket[1] ||
-                numbersAnnounced[numberCount] in ticket[2]){
-                numbersGained+=1
+                numbersAnnounced[numberCount] in ticket[2]
+            ) {
+                crossedNumberCount += 1
             }
-            if (numberCount==numbersAnnounced.size-1 && numbersGained==number){
+            if (numberCount == numbersAnnounced.size - 1 && crossedNumberCount == number) {
                 return true
             }
-            if (numbersGained==number){
+            if (crossedNumberCount == number) {
                 return false
             }
-            numberCount+=1
-
+            numberCount += 1
         }
         return false
     }
-
-
 }
 fun main() {
 //    val ticket = ArrayList<ArrayList<String>>()
