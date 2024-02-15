@@ -12,7 +12,8 @@ class TambolaTest {
         val ticket = tambola.getTicket()
         val announcedNumber = 4
         tambola.markNumber(ticket, announcedNumber)
+        tambola.checkMarked(ticket, announcedNumber)
     }
 
-    assertTrue(ticket[rowNumber].get(rowIndex).second)
+    assertTrue(tambola.checkMarked(ticket, announcedNumber))
 }

@@ -10,5 +10,7 @@ class Tambola(private val ticket: Map<Int, List<Pair<Int, Boolean>>>) {
 
     }
 
-    fun 
+    fun checkMarked(ticket: Map<Int, List<Pair<Int, Boolean>>>, number: Int) {
+
+    }
 }
