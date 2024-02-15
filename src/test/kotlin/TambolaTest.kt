@@ -5,7 +5,7 @@ import kotlin.test.assertTrue
 
 class TambolaTest {
     @Test
-    fun `Top Row validation for acceptance claim`(){
+    fun `should accept if the top row claim is valid`(){
         val tambola = Tambola()
 
         val ticket = ArrayList<ArrayList<String>>()
@@ -19,7 +19,7 @@ class TambolaTest {
     }
 
     @Test
-    fun `Top Row validation for rejection claim`(){
+    fun `should reject if the top row claim is invalid`(){
         val tambola = Tambola()
 
         val ticket = ArrayList<ArrayList<String>>()
@@ -34,7 +34,7 @@ class TambolaTest {
 
 
     @Test
-    fun `Bottom Row validation for acceptance claim`(){
+    fun `should accept if the bottom row claim is valid`(){
         val tambola = Tambola()
 
         val ticket = ArrayList<ArrayList<String>>()
@@ -48,7 +48,7 @@ class TambolaTest {
     }
 
     @Test
-    fun `Bottom Row validation for rejection claim`(){
+    fun `should reject if the bottom row claim is invalid`(){
         val tambola = Tambola()
 
         val ticket = ArrayList<ArrayList<String>>()
@@ -62,7 +62,7 @@ class TambolaTest {
     }
 
     @Test
-    fun `Early Five validation for acceptance claim`(){
+    fun `should accept if the early five claim is valid`(){
         val tambola = Tambola()
 
         val ticket = ArrayList<ArrayList<String>>()
@@ -72,11 +72,11 @@ class TambolaTest {
 
         val numberAnnounced = ArrayList<String>("9, 54, 17, 64, 83, 12, 25, 52".split(", "))
 
-        assertTrue(tambola.earlyNumberValidation(ticket, numberAnnounced, 5))
+        assertTrue(tambola.earlyFiveValidation(ticket, numberAnnounced, 5))
     }
 
     @Test
-    fun `Early Five validation for rejection claim`(){
+    fun `should reject if the early five claim is invalid`(){
         val tambola = Tambola()
 
         val ticket = ArrayList<ArrayList<String>>()
@@ -86,11 +86,11 @@ class TambolaTest {
 
         val numberAnnounced = ArrayList<String>("9, 54, 17, 64, 83, 12, 25, 52, 67".split(", "))
 
-        assertFalse(tambola.earlyNumberValidation(ticket, numberAnnounced, 5))
+        assertFalse(tambola.earlyFiveValidation(ticket, numberAnnounced, 5))
     }
 
     @Test
-    fun `Middle Row validation for acceptance claim`(){
+    fun `should accept if the middle row validation is valid`(){
         val tambola = Tambola()
 
         val ticket = ArrayList<ArrayList<String>>()
@@ -104,7 +104,7 @@ class TambolaTest {
     }
 
     @Test
-    fun `Middle Row validation for rejection claim`(){
+    fun `should reject if the middle row validation is invalid`(){
         val tambola = Tambola()
 
         val ticket = ArrayList<ArrayList<String>>()
@@ -118,7 +118,7 @@ class TambolaTest {
     }
 
     @Test
-    fun `Full House validation for acceptance claim`(){
+    fun `should accept if the full house validation is valid`(){
         val tambola = Tambola()
 
         val ticket = ArrayList<ArrayList<String>>()
@@ -129,7 +129,7 @@ class TambolaTest {
         val numberAnnounced = ArrayList<String>("4, 16, 63, 76, 80, 12, 25, 52, 48, 7, 23, 38, 9, 56, 64, 83".
         split(", "))
 
-        assertTrue(tambola.earlyNumberValidation(ticket, numberAnnounced, 15))
+        assertTrue(tambola.earlyFiveValidation(ticket, numberAnnounced, 15))
     }
 
     @Test
@@ -144,6 +144,6 @@ class TambolaTest {
         val numberAnnounced = ArrayList<String>("4, 16, 63, 76, 80, 12, 25, 52, 48, 7, 23, 38, 80, 9, 56, 64, 83, 10".
         split(", "))
 
-        assertFalse(tambola.earlyNumberValidation(ticket, numberAnnounced, 15))
+        assertFalse(tambola.earlyFiveValidation(ticket, numberAnnounced, 15))
     }
 }
