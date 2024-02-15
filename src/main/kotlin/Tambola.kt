@@ -1,5 +1,5 @@
 package org.example
 
-class Tambola {
+class Tambola(mapOf: Map<Int, List<Pair<Int, Boolean>>>) {
 
 }
