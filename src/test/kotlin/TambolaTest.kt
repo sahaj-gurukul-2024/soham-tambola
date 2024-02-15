@@ -197,10 +197,10 @@ class TambolaTest {
         tambola.markNumber(ticket, 64)
         tambola.markNumber(ticket, 83)
 
-        val lastAnnouncedNumber = 81
+        val lastAnnouncedNumber = 83
 
         val claim = tambola.validClaim("Full House", ticket, lastAnnouncedNumber)
 
-        assertTrue("Full House" == claim)
+        assertEquals("Accepted", claim)
     }
 }
