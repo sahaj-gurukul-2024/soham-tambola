@@ -1,16 +1,25 @@
 package org.example
 
-class Tambola(private val ticket: Map<Int, List<Pair<Int, Boolean>>>) {
+class Tambola(private var ticket: MutableMap<Int, MutableMap<Int, Boolean>>) {
 
-    fun getTicket(): Map<Int, List<Pair<Int, Boolean>>> {
+    fun getTicket(): MutableMap<Int, MutableMap<Int, Boolean>> {
         return ticket
     }
 
-    fun markNumber(ticket: Map<Int, List<Pair<Int, Boolean>>>, number: Int): {
-
+    fun markNumber(ticket: MutableMap<Int, MutableMap<Int, Boolean>>, number: Int) {
+        for ((row, map) in ticket) {
+            map.put(number, true)
+        }
     }
 
-    fun checkMarked(ticket: Map<Int, List<Pair<Int, Boolean>>>, number: Int) {
 
+    fun checkMarked(ticket: MutableMap<Int, MutableMap<Int, Boolean>>, number: Int): Boolean {
+        for ((row, map) in ticket) {
+            return map.getOrDefault(number, false)
+        }
+        return false
     }
+
 }
+
+
