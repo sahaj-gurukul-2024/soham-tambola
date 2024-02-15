@@ -1,6 +1,12 @@
 package org.example
 
+private const val s = "Accepted"
+
 class Tambola(private var ticket: MutableMap<Int, MutableMap<Int, Boolean>>) {
+
+
+    private val ACCEPTED: String = "Accepted";
+    private val REJECTED: String = "Accepted";
 
     fun getTicket(): MutableMap<Int, MutableMap<Int, Boolean>> {
         return ticket
@@ -8,7 +14,7 @@ class Tambola(private var ticket: MutableMap<Int, MutableMap<Int, Boolean>>) {
 
     fun markNumber(ticket: MutableMap<Int, MutableMap<Int, Boolean>>, number: Int) {
         for ((row, map) in ticket) {
-            map.put(number, true)
+            map[number] = true
         }
     }
 
@@ -36,10 +42,8 @@ class Tambola(private var ticket: MutableMap<Int, MutableMap<Int, Boolean>>) {
         if (claim == "Top Row") {
             valid = validateTopRowClaim(ticket, lastAnnouncedNumber)
         }
-        if (valid) {
-            return "Accepted"
-        }
-        return "Rejected"
+
+        return if (valid) ACCEPTED else REJECTED
     }
 
 }
