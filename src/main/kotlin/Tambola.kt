@@ -68,6 +68,22 @@ class Tambola(private var ticket: MutableMap<Int, MutableMap<Int, Boolean>>) {
         return false
     }
 
+    fun fullHouse(ticket: MutableMap<Int, MutableMap<Int, Boolean>>, lastAnnouncedNumber: Int): Boolean {
+        var lastAnnouncedNumberPresent = false
+        for ((row, map) in ticket) {
+            if (map.containsKey(lastAnnouncedNumber)) {
+                lastAnnouncedNumberPresent = true
+            }
+            if (map.containsValue(false)) {
+                return false
+            }
+        }
+        if (!lastAnnouncedNumberPresent) {
+            return false
+        }
+        return true
+    }
+
     fun validClaim(claim: String, ticket: MutableMap<Int, MutableMap<Int, Boolean>>, lastAnnouncedNumber: Int): String {
         var valid = false
         if (claim == "Top Row") {
@@ -76,14 +92,14 @@ class Tambola(private var ticket: MutableMap<Int, MutableMap<Int, Boolean>>) {
             valid = validBottomRowClaim(ticket, lastAnnouncedNumber)
         } else if (claim == "Early Five") {
             valid = earlyFive(ticket, lastAnnouncedNumber)
+        } else if (claim == "Full House") {
+            valid = fullHouse(ticket, lastAnnouncedNumber)
         }
         if (valid) {
             return "Accepted"
         }
         return "Rejected"
     }
-
-
 }
 
 
