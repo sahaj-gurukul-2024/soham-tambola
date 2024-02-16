@@ -155,4 +155,19 @@ class TambolaTest {
 
         assertFalse(tambola.fullHouseValidation(ticket, numberAnnounced))
     }
+
+    @Test
+    fun `should reject when claim is unregistered` () {
+        val tambola = Tambola()
+
+        val ticket = TambolaTicket(
+            arrayOf(4, 16, 48, 63, 76),
+            arrayOf(7, 23, 38, 52, 80),
+            arrayOf(9, 25, 56, 64, 83),
+        )
+
+        val numberAnnounced = arrayListOf(4, 16, 63, 76, 80, 12, 25, 52, 48, 7, 23, 38, 80, 9, 56, 64, 83, 10)
+
+        assertFalse(tambola.validateTicket(ticket, numberAnnounced, "ERROR"))
+    }
 }
