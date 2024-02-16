@@ -18,7 +18,7 @@ class TambolaTest {
 
         val numberAnnounced = arrayListOf(4, 16, 17, 63, 48, 76)
 
-        assertTrue(tambola.rowValidation(ticket, numberAnnounced, 1))
+        assertTrue(tambola.validateClaim(ticket, numberAnnounced, "TopRow"))
     }
 
     @Test
@@ -33,7 +33,7 @@ class TambolaTest {
 
         val numberAnnounced = arrayListOf(4, 16, 17, 63, 48, 76, 12)
 
-        assertFalse(tambola.rowValidation(ticket, numberAnnounced, 1))
+        assertFalse(tambola.validateClaim(ticket, numberAnnounced, "TopRow"))
     }
 
     @Test
@@ -48,7 +48,7 @@ class TambolaTest {
 
         val numberAnnounced = arrayListOf(7, 23, 52, 38, 80)
 
-        assertTrue(tambola.rowValidation(ticket, numberAnnounced, 2))
+        assertTrue(tambola.validateClaim(ticket, numberAnnounced, "MiddleRow"))
     }
 
     @Test
@@ -63,7 +63,7 @@ class TambolaTest {
 
         val numberAnnounced = arrayListOf(7, 23, 52, 38, 80, 12, 25, 67)
 
-        assertFalse(tambola.rowValidation(ticket, numberAnnounced, 1))
+        assertFalse(tambola.validateClaim(ticket, numberAnnounced, "MiddleRow"))
     }
 
     @Test
@@ -78,7 +78,7 @@ class TambolaTest {
 
         val numberAnnounced = arrayListOf(9, 16, 17, 56, 48, 83, 25, 64)
 
-        assertTrue(tambola.rowValidation(ticket, numberAnnounced, 3))
+        assertTrue(tambola.validateClaim(ticket, numberAnnounced, "BottomRow"))
     }
 
     @Test
@@ -93,7 +93,7 @@ class TambolaTest {
 
         val numberAnnounced = arrayListOf(9, 16, 17, 56, 48, 83, 25, 56, 43)
 
-        assertFalse(tambola.rowValidation(ticket, numberAnnounced, 2))
+        assertFalse(tambola.validateClaim(ticket, numberAnnounced, "BottomRow"))
     }
 
     @Test
@@ -108,7 +108,7 @@ class TambolaTest {
 
         val numberAnnounced = arrayListOf(9, 54, 17, 64, 83, 12, 25, 52)
 
-        assertTrue(tambola.earlyFiveValidation(ticket, numberAnnounced))
+        assertTrue(tambola.validateClaim(ticket, numberAnnounced, "EarlyFive"))
     }
 
     @Test
@@ -123,7 +123,7 @@ class TambolaTest {
 
         val numberAnnounced = arrayListOf(9, 54, 17, 64, 83, 12, 25, 52, 67)
 
-        assertFalse(tambola.earlyFiveValidation(ticket, numberAnnounced))
+        assertFalse(tambola.validateClaim(ticket, numberAnnounced, "EarlyFive"))
     }
 
     @Test
@@ -138,7 +138,7 @@ class TambolaTest {
 
         val numberAnnounced = arrayListOf(4, 16, 63, 76, 80, 12, 25, 52, 48, 7, 23, 38, 9, 56, 64, 83)
 
-        assertTrue(tambola.fullHouseValidation(ticket, numberAnnounced))
+        assertTrue(tambola.validateClaim(ticket, numberAnnounced, "FullHouse"))
     }
 
     @Test
@@ -153,7 +153,7 @@ class TambolaTest {
 
         val numberAnnounced = arrayListOf(4, 16, 63, 76, 80, 12, 25, 52, 48, 7, 23, 38, 80, 9, 56, 64, 83, 10)
 
-        assertFalse(tambola.fullHouseValidation(ticket, numberAnnounced))
+        assertFalse(tambola.validateClaim(ticket, numberAnnounced, "FullHouse"))
     }
 
     @Test
@@ -168,6 +168,6 @@ class TambolaTest {
 
         val numberAnnounced = arrayListOf(4, 16, 63, 76, 80, 12, 25, 52, 48, 7, 23, 38, 80, 9, 56, 64, 83, 10)
 
-        assertFalse(tambola.validateTicket(ticket, numberAnnounced, "ERROR"))
+        assertFalse(tambola.validateClaim(ticket, numberAnnounced, "ERROR"))
     }
 }

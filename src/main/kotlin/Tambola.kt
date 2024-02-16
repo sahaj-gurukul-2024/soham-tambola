@@ -3,7 +3,7 @@ package org.example
 class Tambola() {
     private var crossedNumberCount = 0
 
-    fun validateTicket(ticket: TambolaTicket, numbersAnnounced: ArrayList<Int>, claim: String): Boolean {
+    fun validateClaim(ticket: TambolaTicket, numbersAnnounced: ArrayList<Int>, claim: String): Boolean {
         return when (claim) {
             "TopRow" -> rowValidation(ticket, numbersAnnounced, 1)
             "MiddleRow" -> rowValidation(ticket, numbersAnnounced, 2)
