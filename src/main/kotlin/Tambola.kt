@@ -1,6 +1,6 @@
 package org.example
 
-class Tambola(){
+class Tambola() {
     private var crossedNumberCount = 0
 
     fun rowValidation(
@@ -25,9 +25,8 @@ class Tambola(){
         return false
     }
 
-    fun earlyFiveOrFullHouseValidation(
-        ticket: TambolaTicket, numbersAnnounced: ArrayList<Int>,
-        number: Int
+    fun fullHouseValidation(
+        ticket: TambolaTicket, numbersAnnounced: ArrayList<Int>
     ): Boolean {
         var numberCount = 0
         while (numberCount < numbersAnnounced.size) {
@@ -37,10 +36,32 @@ class Tambola(){
             ) {
                 crossedNumberCount += 1
             }
-            if (numberCount == numbersAnnounced.size - 1 && crossedNumberCount == number) {
+            if (numberCount == numbersAnnounced.size - 1 && crossedNumberCount == 15) {
                 return true
             }
-            if (crossedNumberCount == number) {
+            if (crossedNumberCount == 15) {
+                return false
+            }
+            numberCount += 1
+        }
+        return false
+    }
+
+    fun earlyFiveValidation(
+        ticket: TambolaTicket, numbersAnnounced: ArrayList<Int>
+    ): Boolean {
+        var numberCount = 0
+        while (numberCount < numbersAnnounced.size) {
+            if (numbersAnnounced[numberCount] in ticket.topRow ||
+                numbersAnnounced[numberCount] in ticket.middleRow ||
+                numbersAnnounced[numberCount] in ticket.bottomRow
+            ) {
+                crossedNumberCount += 1
+            }
+            if (numberCount == numbersAnnounced.size - 1 && crossedNumberCount == 5) {
+                return true
+            }
+            if (crossedNumberCount == 5) {
                 return false
             }
             numberCount += 1
