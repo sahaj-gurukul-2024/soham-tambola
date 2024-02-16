@@ -1,6 +1,6 @@
 package org.example
 
-class Tambola() {
+class Tambola {
     private var crossedNumberCount = 0
 
     fun validateClaim(ticket: TambolaTicket, numbersAnnounced: ArrayList<Int>, claim: String): Boolean {
@@ -14,7 +14,7 @@ class Tambola() {
         }
     }
 
-    fun rowValidation(
+    private fun rowValidation(
         ticket: TambolaTicket,
         numbersAnnounced: ArrayList<Int>,
         rowNumber: Int
@@ -36,7 +36,7 @@ class Tambola() {
         return false
     }
 
-    fun fullHouseValidation(
+    private fun fullHouseValidation(
         ticket: TambolaTicket, numbersAnnounced: ArrayList<Int>
     ): Boolean {
         var numberCount = 0
@@ -58,7 +58,7 @@ class Tambola() {
         return false
     }
 
-    fun earlyFiveValidation(
+    private fun earlyFiveValidation(
         ticket: TambolaTicket, numbersAnnounced: ArrayList<Int>
     ): Boolean {
         var numberCount = 0
